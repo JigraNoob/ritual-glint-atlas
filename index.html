@@ -16,4 +16,10 @@ exports.askGemini = functions.https.onRequest(async (req, res) => {
   const data = await response.json();
   res.send(data);
 });
+<div id="seer-panel">
+  <h2>Ask the Seer</h2>
+  <textarea id="seer-prompt" placeholder="Whisper your query to the Seer..." rows="3"></textarea>
+  <button onclick="invokeGemini()">Invoke</button>
+  <div id="seer-response" class="seer-response"></div>
+</div>
 
