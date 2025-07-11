@@ -1,11 +1,14 @@
 const functions = require("firebase-functions");
 const fetch = require("node-fetch");
-require("dotenv").config();
+const { defineSecret } = require("firebase-functions/params");
+const geminiApiKey = defineSecret("GEMINI_API_KEY");
+
+
 
 exports.askGemini = functions.https.onRequest(async (req, res) => {
   try {
     const prompt = req.body.prompt;
-
+    const API_KEY = geminiApiKey.value();
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
